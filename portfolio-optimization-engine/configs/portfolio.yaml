@@ -1,0 +1,84 @@
+# Multi-Asset Portfolio Optimization & Risk Parity Engine — Config
+# All monetary amounts are in account currency; returns are decimal (0.01 = 1%).
+
+universe:
+  # VN30 large-cap tickers (Yahoo Finance format)
+  vn30:
+    - VNM.VN    # Vinamilk
+    - VIC.VN    # Vingroup
+    - VHM.VN    # Vinhomes
+    - HPG.VN    # Hoa Phat Group
+    - BID.VN    # BIDV
+    - CTG.VN    # VietinBank
+    - VCB.VN    # Vietcombank
+    - TCB.VN    # Techcombank
+    - MBB.VN    # Military Bank
+    - FPT.VN    # FPT Corp
+  # Diversification sleeves (US-listed proxies, fetchable via yfinance when available)
+  diversification:
+    - GLD       # Gold ETF
+    - TLT       # 20+ year Treasury bond ETF
+
+# Date range: 5 years of history to span both calm (2020-21) and stress (2022) regimes
+date_range:
+  start: "2018-01-01"
+  end: "2024-12-31"
+
+# Returns estimation
+returns:
+  method: "historical"        # historical | black_litterman
+  rolling_window: 252         # trading days for rolling mean/covariance (~12 months)
+  min_observations: 120
+
+# Covariance estimation
+covariance:
+  method: "ledoit_wolf"       # sample | ledoit_wolf
+  shrinkage_target: "diag"    # diag | constant_correlation | identity
+
+# Rebalancing
+rebalance:
+  frequency: "monthly"        # monthly | quarterly
+  lookback_days: 252
+  min_holding_days: 21
+
+# Transaction cost model
+costs:
+  commission_bps: 5           # 5 basis points per side (typical for liquid VN/US markets)
+  slippage_bps: 5             # 5 bps slippage estimate
+  # Combined cost applied to turnover (sum of buy + sell side)
+
+# Portfolio constraints (apply to all long-only methods)
+constraints:
+  long_only: true
+  max_weight: 0.30            # No asset > 30% — forces diversification
+  min_weight: 0.0
+
+# Risk overlay (vol targeting and drawdown control)
+risk_overlay:
+  enabled: true
+  target_vol_annual: 0.12     # 12% annualized volatility target
+  vol_lookback_days: 63       # 3-month realized vol for sizing
+  max_drawdown_kill_switch: 0.20  # Hard DD: zero exposure
+  max_dd_soft: 0.10                # Soft DD: start reducing exposure
+
+# Backtest
+backtest:
+  initial_capital: 1_000_000
+  benchmark: "equal_weight"   # equal_weight | none
+
+# Optimization-specific
+mvo:
+  target_return_annual: 0.12  # used as target when running vanilla MVO
+
+black_litterman:
+  tau: 0.05
+  market_implied_prior: "equal_weight"
+  views: []                   # list of {asset, view_return, confidence}
+
+# Methods to compare (always include equal_weight as baseline)
+methods:
+  - "equal_weight"
+  - "mean_variance"
+  - "risk_parity"
+  - "hrp"
+  - "black_litterman"   # optional, activated when views are provided
