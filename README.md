@@ -56,6 +56,27 @@ more weight per rebalance than Risk Parity.
 
 ---
 
+## Interactive dashboard
+
+A Streamlit / Hugging Face Spaces dashboard lives in [`app.py`](app.py) +
+[`dashboard/`](dashboard/). It renders every chart in this README
+interactively — you can select which methods to compare, slice the date
+window, drill into per-rebalance weights, and inspect the bootstrap CI
+on the headline Sharpe.
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+See [`dashboard/README.md`](dashboard/README.md) for layout details, or
+deploy to HF Spaces with the supplied `.streamlit/config.toml` + the
+`README.md` in this folder (HF reads the YAML front-matter at the top of
+this file when the repo is created as a Space — duplicate the front-matter
+into a dedicated Space repo if you fork only `dashboard/`).
+
+---
+
 ## Robustness
 
 The headline table above is one backtest run. To answer "is the ranking
@@ -179,8 +200,13 @@ fallback by looking for `Data sources used: synthetic` in the log.
 
 ```
 portfolio-optimization-engine/
+├── .streamlit/                    # HF Spaces / Streamlit config
 ├── configs/
 │   └── portfolio.yaml              # Universe, constraints, rebalance config, costs
+├── dashboard/                      # Streamlit dashboard (this folder's sibling)
+│   ├── data_loader.py              # CSV/JSON loaders with @st.cache_data
+│   ├── charts.py                   # Plotly figure builders
+│   └── tabs/                       # One module per dashboard tab
 ├── data/
 │   ├── raw/                        # (placeholder; real data goes here when fetched)
 │   └── processed/                  # prices.parquet, returns.parquet
@@ -199,10 +225,13 @@ portfolio-optimization-engine/
 │   │   └── risk.py                 # Vol-targeting + drawdown overlay
 │   ├── methods.py                  # Method factories for backtest
 │   ├── evaluate.py                 # Sharpe / Sortino / Calmar / effective N
+│   ├── robustness.py               # Sweep + cost sensitivity
+│   ├── significance.py             # Bootstrap CI + deflated SR
 │   └── visualize.py                # Equity, drawdown, weight history charts
 ├── results/                        # All run outputs (PNG, CSV, JSON)
 ├── notebooks/                      # Exploratory analysis
 ├── tests/                          # Unit tests
+├── app.py                          # Streamlit dashboard entry point
 ├── run.py                          # End-to-end runner
 ├── requirements.txt
 ├── RESEARCH_NOTE.md                # Detailed write-up of the experiment
@@ -226,7 +255,10 @@ python run.py
 # 3. Inspect results (CSV tables, PNG charts, JSON diagnostics)
 ls results/
 
-# 4. One-page summary of the latest run
+# 4. Interactive dashboard
+streamlit run app.py
+
+# 5. One-page summary of the latest run
 python scripts/show_results.py --stress
 ```
 
@@ -426,5 +458,7 @@ Continuous drawdown-aware exposure scalar: linearly ramps exposure from
 - `vnstock` (optional, alternative VN data source)
 - `pyarrow` (parquet I/O)
 - `PyYAML` (config files)
+- `streamlit`, `plotly` (dashboard only — kept in a separate
+  `requirements-dashboard.txt` for HF Spaces minimal installs)
 
 See `requirements.txt` for pinned versions.

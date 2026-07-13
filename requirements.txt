@@ -11,3 +11,9 @@ pyarrow>=12.0
 # Data sources — optional. Code falls back to synthetic data when unavailable.
 vnstock>=3.0
 yfinance>=0.2
+# Dashboard (Streamlit + Plotly). Already included in the main install so
+# `streamlit run app.py` works out of the box after `pip install -r requirements.txt`.
+streamlit>=1.39,<2.0
+plotly>=5.18,<6.0
+# Test stack
+pytest>=8.0

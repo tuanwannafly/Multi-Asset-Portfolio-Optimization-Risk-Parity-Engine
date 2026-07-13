@@ -1,0 +1,8 @@
+# Minimal requirements for the Streamlit / HF Spaces dashboard.
+# The dashboard only reads CSV/JSON from ../results/ — it does NOT need
+# numpy/pandas/scipy/cvxpy/vnstock/yfinance (those are required only by
+# `run.py` to *produce* the CSVs).
+streamlit>=1.39,<2.0
+pandas>=2.0,<3.0
+numpy>=1.24,<3.0
+plotly>=5.18,<6.0
