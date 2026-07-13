@@ -16,3 +16,6 @@ data/processed/*.parquet
 !data/processed/.gitkeep
 *.log
 debug*.py
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
