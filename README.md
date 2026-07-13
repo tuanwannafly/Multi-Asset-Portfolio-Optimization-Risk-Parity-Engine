@@ -69,6 +69,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+**Deploy links** : https://tuanwannafly-multi-asset-portfolio-optimization-ris-app-kijuzr.streamlit.app/
+
 See [`dashboard/README.md`](dashboard/README.md) for layout details, or
 deploy to HF Spaces with the supplied `.streamlit/config.toml` + the
 `README.md` in this folder (HF reads the YAML front-matter at the top of
