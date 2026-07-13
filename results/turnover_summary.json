@@ -1,0 +1,27 @@
+{
+  "equal_weight": {
+    "total_turnover": 2.0719838296976265,
+    "mean_turnover_per_rebalance": 0.028383340132844197,
+    "total_cost": 0.002071983829697626
+  },
+  "mean_variance": {
+    "total_turnover": 4.25708232549917,
+    "mean_turnover_per_rebalance": 0.05831619623971466,
+    "total_cost": 0.004257082325499171
+  },
+  "risk_parity": {
+    "total_turnover": 2.0725132695297908,
+    "mean_turnover_per_rebalance": 0.028390592733284804,
+    "total_cost": 0.002072513269529791
+  },
+  "hrp": {
+    "total_turnover": 7.0852517603503875,
+    "mean_turnover_per_rebalance": 0.09705824329247106,
+    "total_cost": 0.0070852517603503876
+  },
+  "black_litterman": {
+    "total_turnover": 3.1450740068785774,
+    "mean_turnover_per_rebalance": 0.043083205573679145,
+    "total_cost": 0.0031450740068785774
+  }
+}
