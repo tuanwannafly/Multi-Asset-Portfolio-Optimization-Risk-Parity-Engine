@@ -1,0 +1,6 @@
+method,mean_sharpe,std_sharpe,min_sharpe,max_sharpe,n_configs,range_sharpe
+black_litterman,0.8542,0.2488,0.5467,1.1503,6,0.6036
+equal_weight,0.4336,0.0386,0.3862,0.491,6,0.1048
+hrp,0.5514,0.1218,0.425,0.7183,6,0.2933
+mean_variance,0.7769,0.2475,0.473,1.0739,6,0.6009
+risk_parity,0.5056,0.091,0.3886,0.5799,6,0.1913

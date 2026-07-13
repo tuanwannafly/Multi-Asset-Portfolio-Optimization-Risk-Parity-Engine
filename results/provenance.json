@@ -1,0 +1,9 @@
+{
+  "run_timestamp_utc": "2026-07-13T01:30:40.638984+00:00",
+  "data_sources": "vnstock(VCI) + yfinance HTTP",
+  "date_range": "2018-01-01 to 2024-12-31",
+  "n_assets": 12,
+  "n_obs": 1827,
+  "synthetic_fallback": false,
+  "currency_mix": "synthetic (single currency)"
+}

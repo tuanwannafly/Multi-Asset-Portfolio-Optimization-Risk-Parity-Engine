@@ -1,0 +1,6 @@
+method,sharpe,t_stat_iid,p_value_iid,bootstrap_se,ci_95_low,ci_95_high,block_size,n_boot,deflated_sharpe_threshold,prob_sharpe_above_deflated,n_obs
+equal_weight,0.423,17.3128,0.0,0.3606,-0.3149,1.1108,13,1000,1.1926,0.0,1826
+mean_variance,0.7629,28.6824,0.0,0.3715,0.0353,1.4756,13,1000,1.1926,0.0,1826
+risk_parity,0.5664,22.4632,0.0,0.3671,-0.1692,1.2679,13,1000,1.1926,0.0,1826
+hrp,0.4311,17.6153,0.0,0.3628,-0.3177,1.1209,13,1000,1.1926,0.0,1826
+black_litterman,0.8372,30.7779,0.0,0.3708,0.1076,1.5334,13,1000,1.1926,0.0,1826

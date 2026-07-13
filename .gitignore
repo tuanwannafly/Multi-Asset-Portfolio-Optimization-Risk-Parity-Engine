@@ -6,10 +6,10 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
-results/*.png
-results/*.html
-results/*.csv
-results/*.json
+# results/*.png
+# results/*.html
+# results/*.csv
+# results/*.json
 data/raw/*.parquet
 data/processed/*.parquet
 !data/raw/.gitkeep
